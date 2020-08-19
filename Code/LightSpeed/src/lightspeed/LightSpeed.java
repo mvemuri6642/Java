@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package addition;
+package lightspeed;
 
 /**
  *
- * @author tejav
+ * @author Manohar V
  */
-public class Addition {
+public class LightSpeed {
 
     /**
      * @param args the command line arguments
