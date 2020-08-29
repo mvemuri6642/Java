@@ -12,16 +12,36 @@ package constructors;
 
 
 //default constructor which doesn't have any parameters
+/**
 class defaultCon{
     int a,b;
     defaultCon(){ //constructors do not have any return type, not even void also
-        a=10;
-        b=20;
+        a=10;   //instance variables
+        b=20;   //the variables which are defined inside classand outside method are called instance variables
         System.out.println("default constructor:");
+        //System.out.println(+a+" "+b);
         System.out.println("a="+a+" "+"b="+b);
     }
 }
+*/
 
+
+class ParameterizedCon
+{
+    double width;
+    double height;
+    double depth;
+    ParameterizedCon(double w,double h,double d)
+    {
+        width=w;
+        height=h;
+        depth=d;
+    }
+    double volume()
+    {
+        return width*height*depth;
+    }
+}
 
 
 public class Constructors {
@@ -31,7 +51,8 @@ public class Constructors {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        defaultCon o=new defaultCon();
+        ParameterizedCon p=new ParameterizedCon(10,20,30);
+        System.out.println("Volume is:"+(p.volume()));
     }
     
 }
