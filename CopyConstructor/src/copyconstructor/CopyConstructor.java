@@ -20,7 +20,6 @@ public class CopyConstructor {
         depth=d;
         System.out.println("width="+width+" "+"height="+height+" "+"depth="+depth);
     }
-    
     CopyConstructor(CopyConstructor c1)
     {
         width=c1.width;
@@ -28,7 +27,6 @@ public class CopyConstructor {
         depth=c1.depth;
         System.out.println("Copy Constructor:"+(width*height*depth));
     }
-
     /**
      * @param args the command line arguments
      */
@@ -37,5 +35,4 @@ public class CopyConstructor {
         CopyConstructor c1=new CopyConstructor(10,20,30);
         CopyConstructor c2=new CopyConstructor(c1);
     }
-    
 }
