@@ -98,14 +98,18 @@ class Login extends JFrame implements ActionListener{
             }
         });
         
+        ImageIcon image=new ImageIcon("D:\\Manu\\Code\\Java\\UserLogin\\src\\userlogin\\img.png");
+        setIconImage(image.getImage());
+        
+        getContentPane().setBackground(new Color(65,75,86));
         
         
-        
-        
+        setTitle("User Login");
         setVisible(true);
         setLayout(new FlowLayout());
-        setSize(300,300);
+        setSize(400,420);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
     }
     public void actionPerformed(ActionEvent e){
         if(i==20){
