@@ -194,6 +194,7 @@ class Admin_Login_ extends JFrame{
                 refresh();
                 stmt.close();
                 con.close();
+                clrText(1);
                 
             }
             catch(Exception ex1){
@@ -275,6 +276,7 @@ class Admin_Login_ extends JFrame{
         refreshButton.addActionListener(e->{
             tbmodel.setRowCount(0);
             refresh();
+            
             /*
             try{
                 Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/manu","root","manu");
@@ -407,6 +409,7 @@ class Admin_Login_ extends JFrame{
                     + "('"+catoText.getText()+"','"+descText.getText()+"')";
                 SqlExecute(query);
                 refreshCat();
+                clrText(2);
                 
             }
             
@@ -450,6 +453,10 @@ class Admin_Login_ extends JFrame{
         clrcat.addActionListener(e->{
             clrText(2);
             catidTextField();
+        });
+        
+        refreshButtoncat.addActionListener(e->{
+            refreshCat();
         });
         
         logoutcat.addActionListener(e->{
@@ -642,7 +649,9 @@ class Admin_Login_ extends JFrame{
             clrText(3);
         });
         
-        
+        sellrefreshButton.addActionListener(e->{
+            refreshsell();
+        });
         
         
         sellrefreshButton.addActionListener(e->{
@@ -681,16 +690,21 @@ class Admin_Login_ extends JFrame{
         setSize(1200,750);
         setVisible(true);
         setTitle("Admin");
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
     }
     
     
     
+    /////Main class End
+    
+    
     
     
     public void refresh(){
         tbmodel.setRowCount(0);
+        clrText(1);
         try{
                 Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/manu","root","manu");
                 Statement stmt=con.createStatement();
@@ -740,11 +754,13 @@ class Admin_Login_ extends JFrame{
             qtyText.setText("");
             priceText.setText("");
             catText.setText("");
+            idTextField();
         }
         else if(i==2){
             catoidText.setText("");
             catoText.setText("");
             descText.setText("");
+            catidTextField();
             
         }
         else{
@@ -773,6 +789,7 @@ class Admin_Login_ extends JFrame{
     }
     public void refreshCat(){
         tbmodel1.setRowCount(0);
+        clrText(2);
         try{
             Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/manu","root","manu");
             Statement stmt=con.createStatement();
@@ -820,6 +837,7 @@ class Admin_Login_ extends JFrame{
     
     
     public void refreshsell(){
+        clrText(3);
         tbmodel2.setRowCount(0);
         try{
             Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/manu","root","manu");
@@ -846,5 +864,3 @@ class Admin_Login_ extends JFrame{
         }
     }
 }
-
-
