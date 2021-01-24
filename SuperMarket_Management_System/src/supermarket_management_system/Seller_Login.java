@@ -16,6 +16,7 @@ import java.sql.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+
 /**
  *
  * @author Manohar Vemuri
@@ -47,6 +48,7 @@ class Seller_Login_ extends JFrame {
 
         JLabel prodnameLabel = new JLabel("Product Name");
         prodnameLabel.setBounds(200, 100, 100, 25);
+        
 
         prodnameText = new JTextField();
         prodnameText.setBounds(300, 100, 150, 25);
@@ -65,7 +67,7 @@ class Seller_Login_ extends JFrame {
 
         JLabel prodListLabel = new JLabel("Product List");
         prodListLabel.setBounds(775, 95, 80, 20);
-        prodListLabel.setFont(new Font("Courier",Font.PLAIN,15));
+        prodListLabel.setFont(new Font("Courier",Font.BOLD,12));
         
         JComboBox catBox=new JComboBox();
         //catBox.setSelectedIndex(0);
@@ -108,6 +110,10 @@ class Seller_Login_ extends JFrame {
         
         JButton print1=new JButton("Print");
         print1.setBounds(775,660,100,25);
+        
+        
+        JButton logout=new JButton("Logout");
+        logout.setBounds(1065,20,100,25);
         try{
             Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/manu","root","manu");
             Statement stmt=con.createStatement();
@@ -199,6 +205,10 @@ class Seller_Login_ extends JFrame {
                 System.out.println(ex);
             }
         });
+        logout.addActionListener(e->{
+            new login();
+            dispose();
+        });
         
         
         
@@ -221,9 +231,10 @@ class Seller_Login_ extends JFrame {
         p1.add(bill);
         p1.add(amount);
         p1.add(print1);
+        p1.add(logout);
         add(p1);
         setVisible(true);
-
+        setResizable(false);
         setSize(1200, 750);
         setTitle("Seller");
         setLocationRelativeTo(null);

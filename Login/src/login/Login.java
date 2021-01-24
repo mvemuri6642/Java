@@ -59,6 +59,7 @@ class Login_{
         f.setTitle("Login");
         f.setSize(450,250);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setLocationRelativeTo(null);
         f.setVisible(true);
         
         b1.addActionListener(e->{
@@ -85,6 +86,7 @@ class Login_{
            }
         });
         
+   
         
         b2.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){

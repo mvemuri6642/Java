@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
 import java.sql.*;
+import javafx.stage.StageStyle;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 /**
@@ -151,6 +152,7 @@ class Admin_Login_ extends JFrame{
         logout.setBounds(925,20,100,25);
         
         
+        
         prod.add(prodLabel);
         prod.add(prodidLabel);
         prod.add(prodidText);
@@ -256,6 +258,7 @@ class Admin_Login_ extends JFrame{
         });
         
         logout.addActionListener(e->{
+            new login();
             dispose();
         });
         
@@ -367,6 +370,7 @@ class Admin_Login_ extends JFrame{
         logoutcat.setBounds(925,20,100,25);
         
         
+        
         tbmodel1=new DefaultTableModel();
         JTable catoTable=new JTable(tbmodel1);
         catoTable.setCellSelectionEnabled(true);
@@ -460,6 +464,7 @@ class Admin_Login_ extends JFrame{
         });
         
         logoutcat.addActionListener(e->{
+            new login();
             dispose();
         });
         
@@ -660,6 +665,7 @@ class Admin_Login_ extends JFrame{
         
         
         logoutsell.addActionListener(e->{
+            new login();
             dispose();
         });
         
@@ -691,6 +697,8 @@ class Admin_Login_ extends JFrame{
         setVisible(true);
         setTitle("Admin");
         setLocationRelativeTo(null);
+        setResizable(false);
+        
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
     }
