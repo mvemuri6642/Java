@@ -144,6 +144,7 @@ class login extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1200,750);
         setLocationRelativeTo(null);
+        setTitle("Login");
     }
     
     
