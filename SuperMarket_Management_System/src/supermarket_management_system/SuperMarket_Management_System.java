@@ -57,7 +57,7 @@ class login extends JFrame{
         
         
         
-        String st[]={"Admin","Seller"};
+        String st[]={"Admin","Employee"};
         logintype=new JComboBox(st);
         logintype.setBounds(900, 200, 240, 27);
         logintype.setSelectedIndex(0);

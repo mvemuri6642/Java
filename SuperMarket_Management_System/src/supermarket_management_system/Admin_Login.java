@@ -16,6 +16,7 @@ import javax.swing.table.TableModel;
  *
  * @author Manohar Vemuri
  */
+
 public class Admin_Login {
     public static void main(String[] args){
         new Admin_Login_();
@@ -485,7 +486,7 @@ class Admin_Login_ extends JFrame{
         
         
         
-        JLabel sellLabel=new JLabel("Sellers");
+        JLabel sellLabel=new JLabel("Employees");
         sellLabel.setBounds(450, 20, 1000, 55);
         sellLabel.setFont(new Font("Courier", Font.BOLD,20));
         
@@ -687,7 +688,7 @@ class Admin_Login_ extends JFrame{
         
         tp.addTab("Products",prod);
         tp.addTab("Catagories",cato);
-        tp.addTab("Sellers", sellers);
+        tp.addTab("Employees", sellers);
         tp.setFont(new Font("Times New Roman",Font.BOLD,25));
         add(tp);
         prod.setLayout(null);
