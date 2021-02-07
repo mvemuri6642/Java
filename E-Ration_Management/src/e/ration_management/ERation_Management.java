@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package supermarket_management_system;
+package e.ration_management;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.print.*;
@@ -16,11 +16,12 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javafx.stage.*;
 
+
 /**
  *
  * @author Manohar Vemuri
  */
-public class SuperMarket_Management_System {
+public class ERation_Management {
 
     /**
      * @param args the command line arguments
@@ -38,7 +39,7 @@ public class SuperMarket_Management_System {
 class login extends JFrame{
     JPanel p1;
     JComboBox logintype;
-    JTextField emailText;
+    JTextField usernameText;
     JPasswordField passText;
     JButton login;
     JButton clr;
@@ -46,30 +47,30 @@ class login extends JFrame{
         p1=new JPanel();
         
         
-        JLabel loginLabel=new JLabel("Welcome");
-        loginLabel.setBounds(560, 35, 200, 100);
+        JLabel loginLabel=new JLabel("Ration Management ");
+        loginLabel.setBounds(480, 35, 300, 100);
         loginLabel.setFont(new Font("Courier",Font.BOLD,25));
         
-        JLabel roleLabel=new JLabel("Select Role");
+        JLabel roleLabel=new JLabel("Select");
         roleLabel.setBounds(800,200,200,27);
         roleLabel.setFont(new Font("Courier",Font.BOLD,12));
         
         
         
         
-        String st[]={"Admin","Employee"};
+        String st[]={"Admin","Officer"};
         logintype=new JComboBox(st);
         logintype.setBounds(900, 200, 240, 27);
         logintype.setSelectedIndex(0);
         
         
-        JLabel emailLabel=new JLabel("Email");
-        emailLabel.setBounds(800,275,200,27);
+        JLabel usernameLabel=new JLabel("Username");
+        usernameLabel.setBounds(800,275,200,27);
         
         
         
-        emailText=new JTextField();
-        emailText.setBounds(900, 275, 240, 27);
+        usernameText=new JTextField();
+        usernameText.setBounds(900, 275, 240, 27);
         
         JLabel passLabel=new JLabel("Password");
         passLabel.setBounds(800,350,200,27);
@@ -90,18 +91,18 @@ class login extends JFrame{
                 Statement stmt=con.createStatement();
                 //String type=String.valueOf(logintype.getSelectedItem());
                 String query="select * from SuperMarket_Credentials where Type='"+String.valueOf(logintype.getSelectedItem())+"' "
-                        + "and Email='"+emailText.getText()+"' and Password='"+passText.getText()+"'";
+                        + "and Email='"+usernameText.getText()+"' and Password='"+passText.getText()+"'";
                 ResultSet rs=stmt.executeQuery(query);
                 if(rs.next()){
                     System.out.println("Success");
                     if(String.valueOf(logintype.getSelectedItem())=="Admin"){
                         
-                        new Admin_Login_();
+                        //new Admin_Login_();
                         dispose();
                         
                     }
                     else{
-                        new Seller_Login_();
+                        //new Seller_Login_();
                         dispose();
                         
                     }
@@ -117,7 +118,7 @@ class login extends JFrame{
             
         });
         clr.addActionListener(e->{
-            emailText.setText("");
+            usernameText.setText("");
             passText.setText("");
             logintype.setSelectedIndex(0);
         });
@@ -131,8 +132,8 @@ class login extends JFrame{
         p1.add(loginLabel);
         p1.add(logintype);
         p1.add(roleLabel);
-        p1.add(emailLabel);
-        p1.add(emailText);
+        p1.add(usernameLabel);
+        p1.add(usernameText);
         p1.add(passLabel);
         p1.add(passText);
         p1.add(login);
@@ -145,9 +146,7 @@ class login extends JFrame{
         setSize(1200,750);
         setLocationRelativeTo(null);
         setTitle("Login");
-    }
     
-    
-    
-    
+}
+
 }
