@@ -85,45 +85,6 @@ class login extends JFrame{
         clr.setBounds(1030, 425, 100, 27);
         
         
-        login.addActionListener(e->{
-            try{
-                Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/manu","root","manu");
-                Statement stmt=con.createStatement();
-                //String type=String.valueOf(logintype.getSelectedItem());
-                String query="select * from SuperMarket_Credentials where Type='"+String.valueOf(logintype.getSelectedItem())+"' "
-                        + "and Email='"+usernameText.getText()+"' and Password='"+passText.getText()+"'";
-                ResultSet rs=stmt.executeQuery(query);
-                if(rs.next()){
-                    System.out.println("Success");
-                    if(String.valueOf(logintype.getSelectedItem())=="Admin"){
-                        
-                        //new Admin_Login_();
-                        dispose();
-                        
-                    }
-                    else{
-                        //new Seller_Login_();
-                        dispose();
-                        
-                    }
-                }
-                else{
-                    JOptionPane.showMessageDialog(null, "Invalid UID/Password", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-            catch(Exception ex){
-                System.out.println(ex);
-                
-            }
-            
-        });
-        clr.addActionListener(e->{
-            usernameText.setText("");
-            passText.setText("");
-            logintype.setSelectedIndex(0);
-        });
-        
-        
         
         
         
