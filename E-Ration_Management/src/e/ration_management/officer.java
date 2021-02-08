@@ -34,8 +34,12 @@ class officer_ extends JFrame{
         JButton view=new JButton("View Accounts");
         view.setBounds(600,150,125,25);
         
+        JButton status=new JButton("Status");
+        status.setBounds(525,250,125,25);
+        
+        
         JButton logout=new JButton("Logout");
-        logout.setBounds(525,250,125,25);
+        logout.setBounds(1050,25,75,25);
         
         
         
@@ -49,6 +53,7 @@ class officer_ extends JFrame{
         p1.add(viewLabel);
         p1.add(add);
         p1.add(view);
+        p1.add(status);
         p1.add(logout);
         p1.setLayout(null);
         setVisible(true);
