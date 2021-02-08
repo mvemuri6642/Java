@@ -108,6 +108,6 @@ class login extends JFrame{
         setLocationRelativeTo(null);
         setTitle("Login");
     
-}
+    }
 
 }
