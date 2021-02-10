@@ -56,11 +56,16 @@ class Admin_Login_ extends JFrame{
     
     
     
+    DefaultTableModel tbmodel3;
+    
+    
+    
     public Admin_Login_(){
         tp=new JTabbedPane(JTabbedPane.LEFT);
         JPanel prod=new JPanel();
         JPanel sellers=new JPanel();
         JPanel cato=new JPanel();
+        JPanel orders=new JPanel();
         
         /*Product List JLabel*/
         JLabel prodLabel=new JLabel("Manage Products");
@@ -680,6 +685,45 @@ class Admin_Login_ extends JFrame{
         
         
         
+        //orders Data
+        
+        
+        
+        JLabel orderLabel=new JLabel("Employees");
+        orderLabel.setBounds(450, 20, 1000, 55);
+        orderLabel.setFont(new Font("Courier", Font.BOLD,20));
+        
+        
+        tbmodel3=new DefaultTableModel();
+        JTable orderTable=new JTable(tbmodel3);
+        tbmodel3.addColumn("Order ID");
+        tbmodel3.addColumn("Date");
+        tbmodel3.addColumn("Total Amount");
+        JScrollPane sp2=new JScrollPane(orderTable);
+        sp2.setBounds(150,100,700,500);
+        
+        
+        
+        
+        
+        
+        orders.add(orderLabel);
+        orders.add(sp2);
+        orders.setLayout(null);
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -689,6 +733,7 @@ class Admin_Login_ extends JFrame{
         tp.addTab("Products",prod);
         tp.addTab("Catagories",cato);
         tp.addTab("Employees", sellers);
+        tp.addTab("Orders", orders);
         tp.setFont(new Font("Times New Roman",Font.BOLD,25));
         add(tp);
         prod.setLayout(null);
