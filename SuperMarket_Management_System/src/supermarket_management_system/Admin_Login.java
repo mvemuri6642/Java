@@ -605,7 +605,7 @@ class Admin_Login_ extends JFrame{
             if(sellnameText.getText()!=""){
                 //String genderSelection=gender.getSelectedItem().toString();
                 String query="insert into SuperMarket_Credentials(Name,Email,Password,Gender,Type)values("
-                        + "'"+sellnameText.getText()+"','"+sellemailText.getText()+"','"+sellpassText.getText()+"','"+gender.getSelectedItem().toString()+"','Seller')";
+                        + "'"+sellnameText.getText()+"','"+sellemailText.getText()+"','"+sellpassText.getText()+"','"+gender.getSelectedItem().toString()+"','Employee')";
                 SqlExecute(query);
                 refreshsell();
                 
