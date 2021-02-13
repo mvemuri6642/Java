@@ -6,6 +6,7 @@
 package e.ration_management;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 /**
  *
@@ -41,6 +42,31 @@ class admin_ extends JFrame{
         JButton logout=new JButton("Logout");
         logout.setBounds(525,400,100,30);
         
+        
+        add.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                new addOfficer_();
+                dispose();
+                
+            }
+        });
+        
+        view.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                new viewOfficer_();
+                dispose();
+                
+            }
+        });
+        
+        
+        logout.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                new login();
+                dispose();
+                
+            }
+        });
         
         
         p1.add(l1);

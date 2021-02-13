@@ -6,7 +6,8 @@
 package e.ration_management;
 import javax.swing.*;
 import java.awt.*;
-
+import java.awt.event.*;
+import java.sql.*;
 /**
  *
  * @author Manohar Vemuri
@@ -68,16 +69,41 @@ class addOfficer_ extends JFrame{
         
         
         
-        JButton add=new JButton("Back");
-        add.setBounds(470,500,100,25);
+        JButton back=new JButton("Back");
+        back.setBounds(470,500,100,25);
         
-        JButton back=new JButton("Add");
-        back.setBounds(670,500,100,25);
-        
-        
+        JButton add=new JButton("Add");
+        add.setBounds(670,500,100,25);
         
         
         
+        add.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                try{
+                    System.out.println(nameText.getText());
+                    Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/manu","root","manu");
+                    Statement stmt=con.createStatement();
+                    String st="insert into eRation(name,email,password,contact,division,status,type)values"
+                            + "('"+nameText.getText()+"','"+emailText.getText()+"','"+passText.getText()+"',"+contactText.getText()+","+divText.getText()+","
+                            + "'N','Officer')";
+                    stmt.executeUpdate(st);
+                    JOptionPane.showMessageDialog(null, "Added Successfully","Success",JOptionPane.INFORMATION_MESSAGE);
+                    System.out.println("Success");
+                }
+                catch(Exception e2){
+                    System.out.println(e2);
+                }
+                
+            }
+        });
+        
+        
+        back.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                new admin_();
+                dispose();
+            }
+        });
         
         
         

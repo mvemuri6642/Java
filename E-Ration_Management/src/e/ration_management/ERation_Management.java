@@ -6,6 +6,7 @@
 package e.ration_management;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.print.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -15,6 +16,7 @@ import java.sql.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javafx.stage.*;
+import java.sql.*;
 
 
 /**
@@ -85,6 +87,57 @@ class login extends JFrame{
         clr.setBounds(1030, 425, 100, 27);
         
         
+        
+        
+        
+        login.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                try{
+                    Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/manu","root","manu");
+                    
+                    
+                    
+                    String query="select * from eRation where email='"+usernameText.getText()+"' and password='"+passText.getText()+"'"
+                            + " and type='"+String.valueOf(logintype.getSelectedItem())+"'";
+                    
+                    Statement stmt=con.createStatement();
+                    ResultSet rs=stmt.executeQuery(query);
+                    if(rs.next()){
+                      if(String.valueOf(logintype.getSelectedItem())=="Admin"){
+                          new admin_();
+                          dispose();
+                      }  
+                      else{
+                          new officer_();
+                          dispose();
+                          
+                      }
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Invalid Username or Password","Login Error",JOptionPane.ERROR_MESSAGE);
+                    }
+                    
+                }
+                catch(Exception e1){
+                    System.out.println(e1);
+                    
+                }
+                
+                
+                
+                
+            }
+        });
+        
+        
+        clr.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                logintype.setSelectedIndex(0);
+                usernameText.setText("");
+                passText.setText("");
+                
+            }
+        });
         
         
         

@@ -7,7 +7,16 @@ package e.ration_management;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 /**
  *
  * @author Manohar Vemuri
@@ -21,6 +30,8 @@ public class viewOfficer {
 
 class viewOfficer_ extends JFrame{
     DefaultTableModel tbmodel;
+    static String name="";
+    String email="";
     public viewOfficer_(){
         
         JPanel p1=new JPanel();
@@ -35,6 +46,7 @@ class viewOfficer_ extends JFrame{
         JTable tb=new JTable(tbmodel);
         tb.setCellSelectionEnabled(true);
         tb.setPreferredScrollableViewportSize(new Dimension(850,200));
+        tbmodel.addColumn("ID");
         tbmodel.addColumn("Name");
         tbmodel.addColumn("Email");
         tbmodel.addColumn("Password");
@@ -101,6 +113,105 @@ class viewOfficer_ extends JFrame{
         JButton back=new JButton("Back");
         back.setBounds(50,650,100,25);
         
+        JTextField idText=new JTextField();
+        
+        
+        tbmodel.setRowCount(0);
+        try{
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/manu","root","manu");
+            Statement stmt=con.createStatement();
+            String query="select * from eRation where type='Officer'";
+            
+            ResultSet rs=stmt.executeQuery(query);
+            while(rs.next()){
+                String name=String.valueOf(rs.getString("Name"));
+                String email=String.valueOf(rs.getString("Email"));
+                String pass=String.valueOf(rs.getString("password"));
+                String contact=String.valueOf(rs.getString("Contact"));
+                String div=String.valueOf(rs.getString("division"));
+                String status=String.valueOf(rs.getString("status"));
+                String id=String.valueOf(rs.getString("ID"));
+                
+                String tbdata[]={id,name,email,pass,contact,div,status};
+                tbmodel.addRow(tbdata);
+            }
+        }
+        catch(Exception ex){
+            System.out.println(ex);
+        }
+    
+        
+        
+        
+        tb.addMouseListener(new MouseAdapter(){
+            public void mousePressed(MouseEvent e){
+                int i=tb.getSelectedRow();
+                TableModel model=tb.getModel();
+                idText.setText(model.getValueAt(i, 0).toString());
+                nameText.setText(model.getValueAt(i, 1).toString());
+                emailText.setText(model.getValueAt(i, 2).toString());
+                passText.setText(model.getValueAt(i, 3).toString());
+                contactText.setText(model.getValueAt(i, 4).toString());
+                divText.setText(model.getValueAt(i, 5).toString());
+                //qtyText.setText(model.getValueAt(i,2).toString());
+                name=nameText.getText();
+                email=emailText.getText();
+            }
+        });
+        
+        System.out.println(name);
+        edit.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                try{
+                    Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/manu","root","manu");
+                    Statement stmt=con.createStatement();
+                    
+                    String query="update eRation set name='"+nameText.getText()+"',email='"+emailText.getText()+"',password='"+passText.getText()+"',"
+                            + "contact='"+contactText.getText()+"',division='"+divText.getText()+"' where ID='"+idText.getText()+"'";
+            
+                    stmt.executeUpdate(query);
+                    RefreshTB();
+                    
+                    
+                }
+                catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, "Error","Error",JOptionPane.INFORMATION_MESSAGE);
+                    
+                }
+            }
+        });
+        
+        
+        
+        delete.addActionListener(e->{
+            try{
+                Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/manu","root","manu");
+                Statement stmt=con.createStatement();
+                String query="delete from eRation where id='"+idText.getText()+"'";
+                stmt.executeUpdate(query);
+                RefreshTB();
+            }
+            catch(Exception ex2){
+                JOptionPane.showMessageDialog(null, "Error","Error",JOptionPane.INFORMATION_MESSAGE);
+                
+            }
+        });
+        clr.addActionListener(e->{
+            nameText.setText("");
+            emailText.setText("");
+            passText.setText("");
+            contactText.setText("");
+            divText.setText("");
+            idText.setText("");
+        });
+        
+        back.addActionListener(e->{
+            new admin_();
+            dispose();
+        });
+        
+        
+        
         
         
         
@@ -128,5 +239,30 @@ class viewOfficer_ extends JFrame{
         setSize(1200,750);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
+    }
+    public void RefreshTB(){
+        tbmodel.setRowCount(0);
+        try{
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/manu","root","manu");
+            Statement stmt=con.createStatement();
+            String query="select * from eRation where type='Officer'";
+            
+            ResultSet rs=stmt.executeQuery(query);
+            while(rs.next()){
+                String name=String.valueOf(rs.getString("Name"));
+                String email=String.valueOf(rs.getString("Email"));
+                String pass=String.valueOf(rs.getString("password"));
+                String contact=String.valueOf(rs.getString("Contact"));
+                String div=String.valueOf(rs.getString("division"));
+                String status=String.valueOf(rs.getString("status"));
+                String id=String.valueOf(rs.getString("ID"));
+                
+                String tbdata[]={id,name,email,pass,contact,div,status};
+                tbmodel.addRow(tbdata);
+            }
+        }
+        catch(Exception ex){
+            System.out.println(ex);
+        }
     }
 }
