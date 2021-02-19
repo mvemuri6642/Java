@@ -97,7 +97,7 @@ class Seller_Login_ extends JFrame {
         
         bill=new JTextArea();
         bill.setBounds(575,420,500,200);
-        String deftextArea="S.No\tProduct\t\tPrice\tQuantity\tTotal";
+        String deftextArea="\t\t                    Bill\n\nS.No\tProduct\t\tPrice\tQuantity\tTotal";
         
         bill.setText(deftextArea);
         
@@ -195,13 +195,21 @@ class Seller_Login_ extends JFrame {
         
 
         print1.addActionListener(e->{
+            System.out.println(totalAmount);
             bill.append("\n\n\t\t\t\t\t\n\n\n\t\t\tTotal Amount:     "+amount.getText());
             try{
                 bill.print();
+                Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/manu","root","manu");
+                Statement stmt=con.createStatement();
+                String query="insert into orders(day,total)values(NOW(),'"+totalAmount+"')";
+                
+                stmt.executeUpdate(query);
+                
+                
                 
                 
             }
-            catch(PrinterException ex){
+            catch(Exception ex){
                 System.out.println(ex);
             }
         });

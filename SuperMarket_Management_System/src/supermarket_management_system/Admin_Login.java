@@ -33,7 +33,7 @@ class Admin_Login_ extends JFrame{
     JTextField nameText;
     JTextField qtyText;
     JTextField priceText;
-    JTextField catText;
+    JComboBox catBox;
     
     
     
@@ -57,6 +57,7 @@ class Admin_Login_ extends JFrame{
     
     
     DefaultTableModel tbmodel3;
+    JButton ordersRefreshButton;
     
     
     
@@ -100,8 +101,12 @@ class Admin_Login_ extends JFrame{
         JLabel catLabel=new JLabel("Catagory");
         catLabel.setBounds(200,200,100,25);
         
-        catText=new JTextField();
-        catText.setBounds(300,200,150,25);
+        //catText=new JTextField();
+        //catText.setBounds(300,200,150,25);
+        
+        catBox=new JComboBox();
+        //catBox.setSelectedIndex(0);
+        catBox.setBounds(300,200,150,25);
         
         
         /*JButtons*/
@@ -123,6 +128,20 @@ class Admin_Login_ extends JFrame{
         
         refreshButton=new JButton("REFRESH");
         refreshButton.setBounds(687, 250, 100, 25);
+        
+        try{
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/manu","root","manu");
+            Statement stmt=con.createStatement();
+            String query="select Category_Name from Categories_Data order by Category_Name asc";
+            ResultSet rs=stmt.executeQuery(query);
+            while(rs.next()){
+                String name=rs.getString("Category_Name");
+                catBox.addItem(name);
+            }
+        }
+        catch(Exception ex){
+            System.out.println();
+        }
         
         
         
@@ -147,7 +166,7 @@ class Admin_Login_ extends JFrame{
                 nameText.setText(model.getValueAt(i, 1).toString()); 
                 qtyText.setText(model.getValueAt(i, 2).toString());
                 priceText.setText(model.getValueAt(i, 3).toString());
-                catText.setText(model.getValueAt(i, 4).toString());
+                //catText.setText(model.getValueAt(i, 4).toString());
                 
             }
         });
@@ -169,7 +188,8 @@ class Admin_Login_ extends JFrame{
         prod.add(priceLabel);
         prod.add(priceText);
         prod.add(catLabel);
-        prod.add(catText);
+        //prod.add(catText);
+        prod.add(catBox);
         prod.add(logout);
         
         //add Buttons
@@ -191,13 +211,13 @@ class Admin_Login_ extends JFrame{
         
         
         //add Button
-        add.addActionListener(e->{
+       add.addActionListener(e->{
             tbmodel.setRowCount(0);
             try{
                 Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/manu","root","manu");
                 Statement stmt=con.createStatement();
                 String query="insert into Product_Data(prodName,prodQTY,prodPrice,Category_Name) values('"+nameText.getText()+"',"
-                        + "'"+qtyText.getText()+"','"+priceText.getText()+"','"+catText.getText()+"')";
+                        + "'"+qtyText.getText()+"','"+priceText.getText()+"','"+catBox.getSelectedItem()+"')";
                 stmt.executeUpdate(query);
                 refresh();
                 stmt.close();
@@ -221,7 +241,7 @@ class Admin_Login_ extends JFrame{
                 nameText.setText(model.getValueAt(i, 1).toString()); 
                 qtyText.setText(model.getValueAt(i, 2).toString());
                 priceText.setText(model.getValueAt(i, 3).toString());
-                catText.setText(model.getValueAt(i, 4).toString());
+                catBox.setSelectedItem(model.getValueAt(i,4).toString());
                 
             }
         });
@@ -230,7 +250,7 @@ class Admin_Login_ extends JFrame{
             try{
                 Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/manu","root","manu");
                 Statement stmt=con.createStatement();
-                String query="update Product_Data set prodName='"+nameText.getText()+"',prodQTY='"+qtyText.getText()+"',prodPrice='"+priceText.getText()+"',Category_Name='"+catText.getText()+"' "
+                String query="update Product_Data set prodName='"+nameText.getText()+"',prodQTY='"+qtyText.getText()+"',prodPrice='"+priceText.getText()+"',Category_Name='"+catBox.getSelectedItem()+"' "
                         + "where prodID="+prodidText.getText()+"";
                 stmt.executeUpdate(query);
                 refresh();
@@ -245,7 +265,7 @@ class Admin_Login_ extends JFrame{
                 System.out.println(ex2);
                 
             }
-        });
+        }); 
         
         
         
@@ -665,11 +685,6 @@ class Admin_Login_ extends JFrame{
         });
         
         
-        sellrefreshButton.addActionListener(e->{
-            refreshsell();
-        });
-        
-        
         logoutsell.addActionListener(e->{
             new login();
             dispose();
@@ -689,7 +704,7 @@ class Admin_Login_ extends JFrame{
         
         
         
-        JLabel orderLabel=new JLabel("Employees");
+        JLabel orderLabel=new JLabel("Orders");
         orderLabel.setBounds(450, 20, 1000, 55);
         orderLabel.setFont(new Font("Courier", Font.BOLD,20));
         
@@ -703,10 +718,29 @@ class Admin_Login_ extends JFrame{
         sp2.setBounds(150,100,700,500);
         
         
+        refreshorders();
+        
+        ordersRefreshButton=new JButton("REFRESH");
+        ordersRefreshButton.setBounds(100, 650, 100, 25);
+        
+        ordersRefreshButton.addActionListener(e->{
+            refreshorders();
+        });
         
         
         
+        JButton logoutorders=new JButton("Logout");
+        logoutorders.setBounds(925,20,100,25);
         
+        
+        logoutorders.addActionListener(e->{
+            new login();
+            dispose();
+        });
+        
+        
+        orders.add(logoutorders);
+        orders.add(ordersRefreshButton);
         orders.add(orderLabel);
         orders.add(sp2);
         orders.setLayout(null);
@@ -807,7 +841,8 @@ class Admin_Login_ extends JFrame{
             nameText.setText("");
             qtyText.setText("");
             priceText.setText("");
-            catText.setText("");
+            catBox.setSelectedIndex(0);
+            
             idTextField();
         }
         else if(i==2){
@@ -914,6 +949,30 @@ class Admin_Login_ extends JFrame{
         }
         catch(Exception ex){
             System.out.println(ex);
+            
+        }
+    }
+    public void refreshorders(){
+        tbmodel3.setRowCount(0);
+        try{
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/manu","root","manu");
+            Statement stmt=con.createStatement();
+            String query="select * from orders";
+            ResultSet rs=stmt.executeQuery(query);
+            while(rs.next()){
+                String id=String.valueOf(rs.getInt("id"));
+                String day=String.valueOf(rs.getString("day"));
+                String total=String.valueOf(rs.getString("total"));
+                String tbdata[]={id,day,total};
+                tbmodel3.addRow(tbdata);
+                
+            }
+            stmt.close();
+            con.close();
+            
+            
+        }
+        catch(Exception ex2){
             
         }
     }

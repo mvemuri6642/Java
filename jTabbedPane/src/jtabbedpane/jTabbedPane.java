@@ -65,7 +65,6 @@ class JTabbed_Pane{
         tp.setForegroundAt(1,Color.RED);
         tp.setMnemonicAt(0, KeyEvent.VK_D);
         tp.setMnemonicAt(1,KeyEvent.VK_L);
-        
         tp.setToolTipTextAt(0, "Department");
         tp.setToolTipTextAt(1, "Language");
         f.add(tp);
