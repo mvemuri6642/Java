@@ -42,6 +42,12 @@ class Seller_Login_ extends JFrame {
     public Seller_Login_() {
         JPanel p1 = new JPanel();
         p1.setLayout(null);
+        
+        JButton newBill=new JButton("New");
+        newBill.setBounds(50,20,75,25);
+        
+        
+        
         JLabel billLabel = new JLabel("Billing Point");
         billLabel.setBounds(500, 20, 1000, 55);
         billLabel.setFont(new Font("Courier", Font.BOLD, 20));
@@ -110,6 +116,15 @@ class Seller_Login_ extends JFrame {
         
         JButton print1=new JButton("Print");
         print1.setBounds(775,660,100,25);
+        
+        newBill.addActionListener(e->{
+            String defquery="select prodID,prodName,prodQTY,prodPrice,Category_Name from Product_Data";
+            RefreshTB(defquery);
+            bill.setText("");
+            
+            
+            
+        });
         
         
         JButton logout=new JButton("Logout");
@@ -195,7 +210,6 @@ class Seller_Login_ extends JFrame {
         
 
         print1.addActionListener(e->{
-            System.out.println(totalAmount);
             bill.append("\n\n\t\t\t\t\t\n\n\n\t\t\tTotal Amount:     "+amount.getText());
             try{
                 bill.print();
@@ -225,6 +239,7 @@ class Seller_Login_ extends JFrame {
         
 
         p1.add(billLabel);
+        p1.add(newBill);
         p1.add(prodnameLabel);
         p1.add(prodnameText);
         p1.add(qtyLabel);
