@@ -184,17 +184,23 @@ class viewOfficer_ extends JFrame{
         
         
         delete.addActionListener(e->{
-            try{
+            int a=JOptionPane.showConfirmDialog(null, "Delete?","",JOptionPane.YES_NO_OPTION);
+            if(a==0){
+                try{
                 Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/manu","root","manu");
                 Statement stmt=con.createStatement();
                 String query="delete from eRation where id='"+idText.getText()+"'";
                 stmt.executeUpdate(query);
                 RefreshTB();
-            }
-            catch(Exception ex2){
+                }
+                catch(Exception ex2){
                 JOptionPane.showMessageDialog(null, "Error","Error",JOptionPane.INFORMATION_MESSAGE);
-                
+                }
             }
+            else{
+            }
+            
+            
         });
         clr.addActionListener(e->{
             nameText.setText("");

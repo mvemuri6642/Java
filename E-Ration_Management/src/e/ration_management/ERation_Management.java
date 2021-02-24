@@ -45,6 +45,7 @@ class login extends JFrame{
     JPasswordField passText;
     JButton login;
     JButton clr;
+    public static int d;
     public login(){
         p1=new JPanel();
         
@@ -108,6 +109,7 @@ class login extends JFrame{
                           dispose();
                       }  
                       else{
+                          d=Integer.valueOf(rs.getInt("Division"));
                           new officer_();
                           dispose();
                           
@@ -128,6 +130,7 @@ class login extends JFrame{
                 
             }
         });
+        
         
         
         clr.addActionListener(new ActionListener(){
@@ -162,5 +165,6 @@ class login extends JFrame{
         setTitle("Login");
     
     }
-
+    
+    
 }

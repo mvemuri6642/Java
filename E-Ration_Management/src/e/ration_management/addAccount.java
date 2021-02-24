@@ -7,6 +7,9 @@ package e.ration_management;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 /**
  *
  * @author Manohar Vemuri
@@ -89,6 +92,7 @@ class addAccount_ extends JFrame{
         
         JTextField divText=new JTextField();
         divText.setBounds(550,150,150,25);
+        divText.setEditable(false);
         
         JLabel vilLabel=new JLabel("Village");
         vilLabel.setBounds(450,200,150,25);
@@ -120,8 +124,32 @@ class addAccount_ extends JFrame{
         
         
         
+        add.addActionListener(e->{
+            try{
+                    System.out.println(nameText.getText());
+                    Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/manu","root","manu");
+                    Statement stmt=con.createStatement();
+                    String st="insert into account(name,aadhaar,contact,door_no,village,mandal,division,status)values"
+                            + "('"+nameText.getText()+"','"+aadhaarText.getText()+"','"+phText.getText()+"','"+dnoText.getText()+"','"+vilText.getText()+"',"
+                            + "'"+mandalText.getText()+"','"+login.d+"','N')";
+                    stmt.executeUpdate(st);
+                    JOptionPane.showMessageDialog(null, "Added Successfully","Success",JOptionPane.INFORMATION_MESSAGE);
+                    System.out.println("Success");
+                }
+                catch(Exception e2){
+                    System.out.println(e2);
+                }
+        });
         
+        back.addActionListener(e->{
+            new officer_();
+            dispose();
+        });
         
+        logout.addActionListener(e->{
+            new login();
+            dispose();
+        });
         
         
         

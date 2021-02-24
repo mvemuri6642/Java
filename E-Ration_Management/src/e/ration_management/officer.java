@@ -43,6 +43,23 @@ class officer_ extends JFrame{
         
         
         
+        add.addActionListener(e->{
+            new addAccount_();
+        });
+        
+        view.addActionListener(e->{
+            new viewAccount_();
+        });
+        
+        status.addActionListener(e->{
+            new status_();
+        });
+        logout.addActionListener(e->{
+            new login();
+            dispose();
+        });
+        int div=login.d;
+        System.out.println(div);
         
         
         
