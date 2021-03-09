@@ -40,9 +40,9 @@ class status_ extends JFrame{
         tbmodel.addColumn("Aadhaar");
         tbmodel.addColumn("Contact");
         tbmodel.addColumn("Door No");
-        tbmodel.addColumn("Division");
-        tbmodel.addColumn("Village");
         tbmodel.addColumn("Mandal");
+        tbmodel.addColumn("Village");
+        tbmodel.addColumn("Division");
         tbmodel.addColumn("Status");
         JScrollPane sp=new JScrollPane(tb);
         sp.setBounds(50,50,1080,250);
@@ -75,6 +75,12 @@ class status_ extends JFrame{
         catch(Exception ex){
             System.out.println(ex);
         }
+        JButton back=new JButton("Back");
+        back.setBounds(500,400,100,30);
+        back.addActionListener(e->{
+            new officer_();
+            dispose();
+        });
         
         
         
@@ -82,6 +88,7 @@ class status_ extends JFrame{
         
         p1.add(viewLabel);
         p1.add(sp);
+        p1.add(back);
         add(p1);
         
         p1.setLayout(null);

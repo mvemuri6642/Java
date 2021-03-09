@@ -52,7 +52,6 @@ class viewOfficer_ extends JFrame{
         tbmodel.addColumn("Password");
         tbmodel.addColumn("Contact");
         tbmodel.addColumn("Division");
-        tbmodel.addColumn("Status");
         JScrollPane sp=new JScrollPane(tb);
         sp.setBounds(25,60,500,200);
         

@@ -45,14 +45,17 @@ class officer_ extends JFrame{
         
         add.addActionListener(e->{
             new addAccount_();
+            dispose();
         });
         
         view.addActionListener(e->{
             new viewAccount_();
+            dispose();
         });
         
         status.addActionListener(e->{
             new status_();
+            dispose();
         });
         logout.addActionListener(e->{
             new login();

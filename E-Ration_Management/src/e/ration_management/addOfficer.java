@@ -22,6 +22,11 @@ public class addOfficer {
 
 
 class addOfficer_ extends JFrame{
+    JTextField nameText;
+    JTextField emailText;
+    JPasswordField passText;
+    JTextField contactText;
+    JTextField divText;
     public addOfficer_(){
         JPanel p1=new JPanel();
         
@@ -35,28 +40,28 @@ class addOfficer_ extends JFrame{
         nameLabel.setBounds(470,150,50,25);
         
         
-        JTextField nameText=new JTextField();
+        nameText=new JTextField();
         nameText.setBounds(570,150,200,25);
         
         
         JLabel emailLabel=new JLabel("Email :");
         emailLabel.setBounds(470,210,50,25);
         
-        JTextField emailText=new JTextField();
+        emailText=new JTextField();
         emailText.setBounds(570,210,200,25);
         
         
         JLabel passLabel=new JLabel("Password :");
         passLabel.setBounds(470,270,100,25);
         
-        JPasswordField passText=new JPasswordField();
+        passText=new JPasswordField();
         passText.setBounds(570,270,200,25);
         
         
         JLabel contactLabel=new JLabel("Contact :");
         contactLabel.setBounds(470,330,100,25);
         
-        JTextField contactText=new JTextField();
+        contactText=new JTextField();
         contactText.setBounds(570,330,200,25);
         
         
@@ -64,7 +69,7 @@ class addOfficer_ extends JFrame{
         JLabel divLabel=new JLabel("Division :");
         divLabel.setBounds(470,390,100,25);
         
-        JTextField divText=new JTextField();
+        divText=new JTextField();
         divText.setBounds(570,390,200,25);
         
         
@@ -89,6 +94,12 @@ class addOfficer_ extends JFrame{
                     stmt.executeUpdate(st);
                     JOptionPane.showMessageDialog(null, "Added Successfully","Success",JOptionPane.INFORMATION_MESSAGE);
                     System.out.println("Success");
+                    
+                    nameText.setText("");
+                    emailText.setText("");
+                    passText.setText("");
+                    contactText.setText("");
+                    divText.setText("");
                 }
                 catch(Exception e2){
                     System.out.println(e2);

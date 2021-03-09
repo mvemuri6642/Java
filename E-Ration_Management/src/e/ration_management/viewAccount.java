@@ -60,28 +60,28 @@ class viewAccount_ extends JFrame{
         idText.setBounds(150,400,150,25);
         
         JLabel nameLabel=new JLabel("Name");
-        nameLabel.setBounds(50,450,100,25);
+        nameLabel.setBounds(50,400,100,25);
         
         JTextField nameText=new JTextField();
-        nameText.setBounds(150,450,150,25);
+        nameText.setBounds(150,400,150,25);
         
         JLabel contactLabel=new JLabel("Contact");
-        contactLabel.setBounds(50,500,100,25);
+        contactLabel.setBounds(50,450,100,25);
         
         JTextField contactText=new JTextField();
-        contactText.setBounds(150,500,150,25);
+        contactText.setBounds(150,450,150,25);
         
         JLabel divisionLabel=new JLabel("Division");
-        divisionLabel.setBounds(50,550,100,25);
+        divisionLabel.setBounds(50,500,100,25);
         
         JTextField divisionText=new JTextField();
-        divisionText.setBounds(150,550,150,25);
+        divisionText.setBounds(150,500,150,25);
         
         JLabel mandalLabel=new JLabel("Mandal");
-        mandalLabel.setBounds(50,600,100,25);
+        mandalLabel.setBounds(50,550,100,25);
         
         JTextField mandalText=new JTextField();
-        mandalText.setBounds(150,600,150,25);
+        mandalText.setBounds(150,550,150,25);
         
         
         JLabel statusLabel=new JLabel("Status");
