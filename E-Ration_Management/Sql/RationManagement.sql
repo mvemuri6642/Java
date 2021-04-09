@@ -8,6 +8,7 @@ describe account;
 update eRation set email='s', password='m' where name='t';
 
 insert into eRation(name,email,password,contact,division,status,type)values("ram","r@gmail.com","r",123,1,"N","officer");
+alter table account modify aadhaar BIGINT;
 
 
 create table account(id int not null auto_increment,name char(20), aadhaar int(12), contact int(10), door_no varchar(15),village varchar(15), mandal varchar(15),division int,status int,primary key(id));
